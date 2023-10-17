@@ -1,36 +1,48 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { Button, Box, Grid, Typography } from '@mui/material'
+import { useDispatch, useSelector ,} from 'react-redux'
+import React from 'react'
+import { RootState , fetchdate} from './store'
+import { fetchDate } from './features/counterSlice';
+import { useEffect } from 'react';
 
-import { decrement, increment } from './features/counterSlice'
-import { RootState } from './store'
-import './App.css'
 
-function App() {
-  const count = useSelector((state: RootState) => state.counter.value)
-  const dispatch = useDispatch()
-
-  return (
-    <div className="App">
-      <h1>Vite + React + Toolkit + MUI</h1>
-      <Box sx={{ width: '100%' }}>
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid item xs={5}>
-            <Button variant="contained" onClick={() => dispatch(increment())}>
-              Increment
-            </Button>
-          </Grid>
-          <Grid item xs={2}>
-            <Typography>{count}</Typography>
-          </Grid>
-          <Grid item xs={5}>
-            <Button variant="contained" onClick={() => dispatch(decrement())}>
-              Decrement
-            </Button>
-          </Grid>
-        </Grid>
-      </Box>
-    </div>
-  )
+type companies={
+  id:number ;
+  login:string;
+  
 }
 
-export default App
+const Companies = () =>{
+
+  const {data , isLoading ,error} = useSelector((state:RootState) => state.companiesR);
+ const dispatch=useDispatch<fetchdate>();
+
+ useEffect(() => {
+  dispatch(fetchDate());
+ },[dispatch]);
+
+
+ if(isLoading){
+  return <p> loading the Data ..</p>;
+ }
+ if (error){
+  return <p>{error}</p>
+ }
+
+
+ return 
+
+ 
+ <div>
+  <h2>companies App</h2>
+  {data.length > 0 && data.map((company :companies ) => {
+    return (
+    <div key={company.id}>
+      <p>{company.id}</p>
+      <p>{company.login}</p>
+    </div>
+    )
+   })};
+ </div>
+
+  };
+export default Companies;

@@ -1,30 +1,47 @@
-import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
+import { Build } from '@mui/icons-material';
+import { createSlice , createAsyncThunk } from '@reduxjs/toolkit'
 
-export interface CounterState {
-  value: number
-}
 
-const initialState: CounterState = {
-  value: 0,
-}
+export const fetchDate= createAsyncThunk ('companies/fetchData',async () => {
+  const response = await fetch('https://api.github.com/organizations');
+  const data =await response.json();
+  return data;
+});
 
-export const counterSlice = createSlice({
-  name: 'counter',
+// export const oneCompany = createAsyncThunk ('companies/fetchData',async () => {
+//   const response = await fetch('https://api.github.com/orgs/<id or login>');
+//   const company =await response.json();
+//   return company;
+// });
+ 
+const initialState = {
+  data:[],
+  isLoading:false,
+  error: " ",
+};
+
+ const companiesReducer = createSlice({
+  name: 'companies',
   initialState,
-  reducers: {
-    increment: (state) => {
-      state.value += 1
-    },
-    decrement: (state) => {
-      state.value -= 1
-    },
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload
-    },
+  reducers: {},
+  extraReducers:(builder) =>{
+    builder
+    .addCase(fetchDate.pending , (state)=>{
+      state.isLoading=true;
+    })
+    .addCase(fetchDate.fulfilled , (state , action)=>{
+      state.data = action.payload
+      state.isLoading = false
+      
+    })
+    .addCase(fetchDate.rejected , (state, action)=>{
+      state.isLoading=false;
+      state.error= "error we can not fech Data";
+      
+    });
   },
-})
+    
+});
 
-export const { increment, decrement, incrementByAmount } = counterSlice.actions
 
-export default counterSlice.reducer
+export default companiesReducer.reducer;
