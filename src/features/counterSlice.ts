@@ -1,6 +1,8 @@
 import { Build } from '@mui/icons-material';
 import { createSlice , createAsyncThunk } from '@reduxjs/toolkit'
-import { CompainesState } from '../Types';
+import { CompainesState,company } from '../Types';
+
+
 
 
 
@@ -31,6 +33,7 @@ const initialState:CompainesState ={
   error: '',
   searchTerm:'',
   storingCmopany: 0,
+  // singleCompany:company ,
 }
 
  const companiesSlice = createSlice({

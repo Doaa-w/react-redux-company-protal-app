@@ -25,6 +25,8 @@ export type CompainesState ={
     error:string;
     searchTerm: '';
     storingCmopany:number
+    // singleCompany:company
+
 }
 
 type FetchDataPendingAction = ReturnType<typeof fetchCompanies.pending>;

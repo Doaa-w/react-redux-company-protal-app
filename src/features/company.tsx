@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { CompaniesDispatch, RootState ,company } from "../Types";
 import { fetchCopmany, searchCompany, sortCmopany } from "./counterSlice";
 
-const singlrCompany=(company:company) => {
-    // const id = useState<company>(id)
-    const {companies , isLoading ,error} = useSelector((state:RootState) => state.companiesReducer);
+const singleCompany=() => {
+    // const {id} = singleCompany;
+    const {company , isLoading ,error} = useSelector((state:RootState) => state.companiesReducer);
     const dispatch:CompaniesDispatch =useDispatch();
    
     useEffect(() => {
-    dispatch(fetchCopmany(id));
-    },[dispatch ,id]); 
+    dispatch(fetchCopmany(0));
+    },[dispatch ,0]); 
    
    
     if(isLoading){
@@ -21,16 +21,16 @@ const singlrCompany=(company:company) => {
     }
  return (
 <div>
-  {/* {singlrCompany (
+  {/* {singleCompany (
     return (
    
-      <h3>{singlrCompany.id}</h3>
-      <p>{singlrCompany.login}</p>
-      <img src={singlrCompany.events_url} alt={singlrCompany.login}/>
-      <p>{singlrCompany.url}</p>
+      <h3>{singleCompany.id}</h3>
+      <p>{singleCompany.login}</p>
+      <img src={singleCompany.events_url} alt={singleCompany.login}/>
+      <p>{singleCompany.url}</p>
 
   ))} */}
 </div>
     );
 }
-export default singlrCompany;
+export default singleCompany;
