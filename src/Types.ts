@@ -1,4 +1,4 @@
-import companiesSlice, { fetchCompanies } from './features/counterSlice'
+import companiesSlice, { fetchCompanies, fetchCopmany , } from './features/counterSlice'
 import { ThunkDispatch } from 'redux-thunk';
 
 export type RootState ={
@@ -25,11 +25,16 @@ export type CompainesState ={
     isLoading:boolean;
     error:string;
     searchTerm: '';
+    fetchCopmany:null
 }
 
 type FetchDataPendingAction = ReturnType<typeof fetchCompanies.pending>;
 type FetchDataFulfilledAction = ReturnType<typeof fetchCompanies.fulfilled>;
 type FetchDataRejectedAction = ReturnType<typeof fetchCompanies.rejected>;
+
+type singlrCopmanyPending= ReturnType<typeof fetchCopmany.pending>;
+type singlrCopmanyFulfilled = ReturnType<typeof fetchCopmany.fulfilled>;
+type singlrCopmanyRejected = ReturnType<typeof fetchCopmany.rejected>;
 type searchCompany={
     payload: number;
     type: "companies/searchCompany";
@@ -37,11 +42,15 @@ type searchCompany={
 }
 
 
+
 export type CompaniesActions =
   | FetchDataPendingAction
   | FetchDataFulfilledAction
   | FetchDataRejectedAction
   |searchCompany
+  |singlrCopmanyPending
+  |singlrCopmanyFulfilled
+  |singlrCopmanyRejected
 
 
 
