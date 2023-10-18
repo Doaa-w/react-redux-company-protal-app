@@ -1,48 +1,55 @@
 import { useDispatch, useSelector ,} from 'react-redux'
-import React from 'react'
-import { RootState , fetchdate} from './store'
-import { fetchDate } from './features/counterSlice';
+import React, { ChangeEvent } from 'react'
+import { CompainesState, CompaniesDispatch, RootState } from './Types'
+import { fetchCompanies, searchCompany } from './features/counterSlice'
+// import companiesSlice from './features/counterSlice'
+import companies from './features/counterSlice'
 import { useEffect } from 'react';
+import { Filter } from '@mui/icons-material'
 
 
-type companies={
-  id:number ;
-  login:string;
-  
-}
 
-const Companies = () =>{
+const App = () =>{
 
-  const {data , isLoading ,error} = useSelector((state:RootState) => state.companiesR);
- const dispatch=useDispatch<fetchdate>();
+ const {companies , isLoading ,error, searchTerm} = useSelector((state:RootState) => state.companiesR);
+ const dispatch:CompaniesDispatch =useDispatch();
 
  useEffect(() => {
-  dispatch(fetchDate());
+  dispatch(fetchCompanies());
  },[dispatch]);
 
 
  if(isLoading){
-  return <p> loading the Data ..</p>;
+  return <p> loading the Data now ..</p>;
  }
  if (error){
   return <p>{error}</p>
  }
+ const handelSearch = (event :ChangeEvent<HTMLInputElement>)=>{
+  dispatch(searchCompany(Number(event.target.value)));
+
+ };
+ const filteredCompanies =searchTerm?companies.filter((company)=> 
+ company.id === searchTerm):companies;
 
 
- return 
+ return (
+    <div>
+       <h1>The companies App</h1>
+      <input type='text' onChange={handelSearch} value={searchTerm}/> 
+      <section className='theCopmanies'>
 
- 
- <div>
-  <h2>companies App</h2>
-  {data.length > 0 && data.map((company :companies ) => {
-    return (
-    <div key={company.id}>
-      <p>{company.id}</p>
-      <p>{company.login}</p>
-    </div>
-    )
-   })};
- </div>
-
-  };
-export default Companies;
+      {filteredCompanies.length > 0 && filteredCompanies.map((company) => {
+        const {id,login, avater_url } = company;
+        return (
+        <div key={id} className='company'>
+          <h3>{id}</h3>
+          <p>{login}</p>
+          <img src='{avater_url }' alt='{login}'/>
+        </div>
+        );
+       })}
+       </section>
+     </div> 
+   )};
+export default App;
