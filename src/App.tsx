@@ -1,8 +1,9 @@
 import { useDispatch, useSelector ,} from 'react-redux'
 import React, { ChangeEvent } from 'react'
-import {CompaniesDispatch, RootState , company } from './Types'
-import { fetchCompanies, fetchCopmany, searchCompany } from './features/counterSlice'
+import {CompaniesDispatch, RootState  } from './Types'
+import { fetchCompanies, searchCompany } from './features/counterSlice'
 import { useEffect } from 'react';
+import Sort from './features/Sort';
 
 
 
@@ -36,6 +37,7 @@ const App =() => {
     <div>
        <h1>The companies App</h1>
       <input type='text' onChange={handelSearch} value={searchTerm}/> 
+        <Sort/>
       <section className='companies'>
 
       {filteredCompanies.length > 0 && filteredCompanies.map((company) => {
@@ -46,6 +48,7 @@ const App =() => {
           <p>{login}</p>
           <img src={events_url} alt={login}/>
           <p>{url}</p>
+          <button><a href="../featurescompany"></a>details</button>
          </div>
         )
        })}

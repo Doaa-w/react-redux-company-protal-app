@@ -30,7 +30,7 @@ const initialState:CompainesState ={
   isLoading:false,
   error: '',
   searchTerm:'',
-  fetchCopmany: " ",
+  storingCmopany: 0,
 }
 
  const companiesSlice = createSlice({
@@ -39,8 +39,21 @@ const initialState:CompainesState ={
   reducers: {
     searchCompany:(state , action) =>{
       state.searchTerm = action.payload
+    },
+ 
+
+    sortCmopany :(state ,action)=>{
+    const storingCmopany=action.payload;
+    if(storingCmopany === 'id'){
+      state.companies.sort((a,b)=>a.id - b.id)
     }
+
+    else if(storingCmopany === 'login'){
+      state.companies.sort((a,b)=>a.login.localeCompare (b.login))
+    }
+
   },
+   },
   extraReducers:(builder) =>{
     builder
     .addCase(fetchCompanies.pending , (state)=>{
@@ -75,5 +88,5 @@ const initialState:CompainesState ={
     
 });
 
-export const{ searchCompany } =companiesSlice.actions;
+export const{ searchCompany ,sortCmopany} =companiesSlice.actions;
 export default companiesSlice.reducer;

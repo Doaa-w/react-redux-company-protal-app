@@ -24,7 +24,7 @@ export type CompainesState ={
     isLoading:boolean;
     error:string;
     searchTerm: '';
-    fetchCopmany:' '
+    storingCmopany:number
 }
 
 type FetchDataPendingAction = ReturnType<typeof fetchCompanies.pending>;
@@ -34,10 +34,15 @@ type FetchDataRejectedAction = ReturnType<typeof fetchCompanies.rejected>;
 type singlrCopmanyPending= ReturnType<typeof fetchCopmany.pending>;
 type singlrCopmanyFulfilled = ReturnType<typeof fetchCopmany.fulfilled>;
 type singlrCopmanyRejected = ReturnType<typeof fetchCopmany.rejected>;
+
 type searchCompany={
     payload: number;
     type: "companies/searchCompany";
     
+}
+type sortCmopanyType ={
+  payload: number;
+  type: "companies/sortCmopany";
 }
 
 
@@ -50,6 +55,7 @@ export type CompaniesActions =
   |singlrCopmanyPending
   |singlrCopmanyFulfilled
   |singlrCopmanyRejected
+  |sortCmopanyType
 
 
 
