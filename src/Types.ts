@@ -3,9 +3,6 @@ import { ThunkDispatch } from 'redux-thunk';
 
 export type RootState ={
     companiesReducer:ReturnType<typeof companiesSlice>;
-    // fetchCopmany:ReturnType<any, number, AsyncThunkConfig>
-
-   
   }
 export type company={
     login:string;
