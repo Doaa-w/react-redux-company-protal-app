@@ -4,7 +4,7 @@ import companiesSlice from './features/counterSlice'
 
  const store = configureStore({
   reducer: {
-    companiesR: companiesSlice,
+    companiesReducer: companiesSlice,
   },
 })
 

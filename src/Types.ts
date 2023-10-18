@@ -2,21 +2,29 @@ import companiesSlice, { fetchCompanies } from './features/counterSlice'
 import { ThunkDispatch } from 'redux-thunk';
 
 export type RootState ={
-    companiesR:ReturnType<typeof companiesSlice>;
+    companiesReducer:ReturnType<typeof companiesSlice>;
    
   }
-// export type compaines ={
-//     company:string[]
-//     id:number
-//     login:string
-// }
+export type company={
+    login:string;
+    id:number;
+    node_id: string;
+    url: string,
+    repos_url : string;
+    events_url : string;
+    hooks_url : string;
+    issues_url : string;
+    members_url : string;
+    public_members_url : string;
+    avatar_url : string;
+    description : null
+}
 export type CompainesState ={
-    compaines:[];
+  companies:company[];
+  company:[];
     isLoading:boolean;
     error:string;
-    searchTerm: number;
-    id:number
-   login:string
+    searchTerm: '';
 }
 
 type FetchDataPendingAction = ReturnType<typeof fetchCompanies.pending>;
