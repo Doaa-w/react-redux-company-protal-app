@@ -5,10 +5,17 @@ import { CompainesState } from '../Types';
 
 
 
-export const fetchCompanies= createAsyncThunk ('companies/fetchData',async () => {
+export const fetchCompanies= createAsyncThunk ('companies/fetchData',async () => { try{
   const response = await fetch("https://api.github.com/organizations");
+  if(!response.ok){
+    throw new Error('resources error');
+    
+  }
   const data =await response.json();
   return data;
+} catch (error) {console.log(error);
+}
+
 });
 
 export const fetchSinglrCopmany = createAsyncThunk ('companies/searchCompany',async (id) => {

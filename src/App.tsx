@@ -38,12 +38,13 @@ const App =() => {
       <section className='companies'>
 
       {filteredCompanies.length > 0 && filteredCompanies.map((company) => {
-        const {id,login, events_url } = company;
+        const {id,login, events_url , url} = company;
         return (
         <div key={id} className='company'>
           <h3>{id}</h3>
           <p>{login}</p>
           <img src={events_url} alt={login}/>
+          <p>{url}</p>
          </div>
         )
        })}
