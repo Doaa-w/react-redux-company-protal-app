@@ -3,6 +3,8 @@ import { ThunkDispatch } from 'redux-thunk';
 
 export type RootState ={
     companiesReducer:ReturnType<typeof companiesSlice>;
+    // fetchCopmany:ReturnType<any, number, AsyncThunkConfig>
+
    
   }
 export type company={
@@ -25,7 +27,7 @@ export type CompainesState ={
     isLoading:boolean;
     error:string;
     searchTerm: '';
-    fetchCopmany:null
+    fetchCopmany:' '
 }
 
 type FetchDataPendingAction = ReturnType<typeof fetchCompanies.pending>;

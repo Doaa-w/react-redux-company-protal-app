@@ -30,7 +30,7 @@ const initialState:CompainesState ={
   isLoading:false,
   error: '',
   searchTerm:'',
-  fetchCopmany:null,
+  fetchCopmany: " ",
 }
 
  const companiesSlice = createSlice({

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector ,} from 'react-redux'
 import React, { ChangeEvent } from 'react'
-import {CompaniesDispatch, RootState } from './Types'
+import {CompaniesDispatch, RootState , company } from './Types'
 import { fetchCompanies, fetchCopmany, searchCompany } from './features/counterSlice'
 import { useEffect } from 'react';
 
@@ -9,18 +9,13 @@ import { useEffect } from 'react';
 
 const App =() => {
 
- const { company,companies , isLoading ,error, searchTerm} = useSelector((state:RootState) => state.companiesReducer);
+ const {companies , isLoading ,error, searchTerm} = useSelector((state:RootState) => state.companiesReducer);
  const dispatch:CompaniesDispatch =useDispatch();
 
  useEffect(() => {
   dispatch(fetchCompanies())
  },[dispatch]); 
 
-//  fetchSinglrCopmany
-
- useEffect(() => {
-  dispatch(fetchCopmany())
- },[company]); 
 
  if(isLoading){
   return <p> loading the Data now ..</p>
