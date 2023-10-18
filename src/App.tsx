@@ -2,14 +2,14 @@ import { useDispatch, useSelector ,} from 'react-redux'
 import React, { ChangeEvent } from 'react'
 import { CompainesState, CompaniesDispatch, RootState } from './Types'
 import { fetchCompanies, searchCompany } from './features/counterSlice'
-// import companiesSlice from './features/counterSlice'
+import companiesSlice from './features/counterSlice'
 import companies from './features/counterSlice'
 import { useEffect } from 'react';
 import { Filter } from '@mui/icons-material'
 
 
 
-const App = () =>{
+const App = ()=> {
 
  const {companies , isLoading ,error, searchTerm} = useSelector((state:RootState) => state.companiesR);
  const dispatch:CompaniesDispatch =useDispatch();
@@ -51,5 +51,6 @@ const App = () =>{
        })}
        </section>
      </div> 
-   )};
+   )
+  };
 export default App;

@@ -24,7 +24,7 @@ const initialState = {
 };
 
  const companiesSlice = createSlice({
-  name: 'companies',
+  name:"companies",
   initialState,
   reducers: {
     searchCompany:(state , action) =>{

@@ -1,5 +1,4 @@
-import companiesReducer, { fetchCompanies } from './features/counterSlice';
-import companiesSlice from './features/counterSlice'
+import companiesSlice, { fetchCompanies } from './features/counterSlice'
 import { ThunkDispatch } from 'redux-thunk';
 
 export type RootState ={
