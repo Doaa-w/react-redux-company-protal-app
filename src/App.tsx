@@ -17,7 +17,6 @@ const App =() => {
  },[dispatch]); 
 
 //  fetchSinglrCopmany
-//  const {company ,isLoading ,error} = useSelector((state:RootState) => state.companiesReducer);
 
  useEffect(() => {
   dispatch(fetchCopmany())

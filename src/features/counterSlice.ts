@@ -1,8 +1,7 @@
 import { Build } from '@mui/icons-material';
 import { createSlice , createAsyncThunk } from '@reduxjs/toolkit'
 import { CompainesState } from '../Types';
- import { company } from '../Types';
- import React from 'react';
+
 
 
 
