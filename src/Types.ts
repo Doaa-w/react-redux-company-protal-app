@@ -11,7 +11,7 @@ export type RootState ={
 //     login:string
 // }
 export type CompainesState ={
-    compaines:copmpany[];
+    compaines:[];
     isLoading:boolean;
     error:string;
     searchTerm: number;

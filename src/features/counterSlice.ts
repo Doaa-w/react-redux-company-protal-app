@@ -6,8 +6,8 @@ import { CompainesState } from '../Types';
 
 export const fetchCompanies= createAsyncThunk ('companies/fetchData',async () => {
   const response = await fetch("https://api.github.com/organizations");
-  const company =await response.json();
-  return company;
+  const data =await response.json();
+  return data;
 });
 
 export const Onecompany = createAsyncThunk ('companies/searchCompany',async (id) => {

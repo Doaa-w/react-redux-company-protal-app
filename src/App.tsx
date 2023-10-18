@@ -29,8 +29,9 @@ const App = ()=> {
   dispatch(searchCompany(Number(event.target.value)));
 
  };
- const filteredCompanies =searchTerm?companies.filter((company)=> 
+ const filteredCompanies =searchTerm?companies.filter((company:CompainesState)=> 
  company.id === searchTerm):companies;
+ console.log(companies)
 
 
  return (
