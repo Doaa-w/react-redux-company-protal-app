@@ -18,15 +18,14 @@ export type company={
     avatar_url : string;
     description : null
 }
+
 export type CompainesState ={
   companies:company[];
   company:[];
     isLoading:boolean;
     error:string;
-    searchTerm: '';
-    storingCmopany:number
-    // singleCompany:company
-
+    searchTerm: string;
+    singleCompany:company|null;
 }
 
 type FetchDataPendingAction = ReturnType<typeof fetchCompanies.pending>;

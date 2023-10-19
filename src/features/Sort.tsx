@@ -7,7 +7,8 @@ const Sort =() => {
     const dispatch:CompaniesDispatch =useDispatch();
 
     const handelChange = (event:ChangeEvent<HTMLSelectElement>)=> {
-        dispatch(sortCmopany(event.target.value));
+        let sortKeyword=event.target.value;
+        dispatch(sortCmopany(sortKeyword));
        }
 
        return (

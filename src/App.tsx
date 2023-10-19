@@ -1,9 +1,10 @@
 import { useDispatch, useSelector ,} from 'react-redux'
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent , useEffect} from 'react'
+
 import {CompaniesDispatch, RootState  } from './Types'
 import { fetchCompanies, searchCompany } from './features/counterSlice'
-import { useEffect } from 'react';
 import Sort from './features/Sort';
+import { Link } from 'react-router-dom';
 
 
 
@@ -25,13 +26,12 @@ const App =() => {
   return <p>{error}</p>
  }
  const handelSearch = (event :ChangeEvent<HTMLInputElement>)=> {
-  dispatch(searchCompany(Number(event.target.value)));
+  let searchKeyword= event.target.value;
+  dispatch(searchCompany(Number(searchKeyword)));
 
  }
  const filteredCompanies =searchTerm?companies.filter((company)=> 
- company.id === searchTerm): 
- 
- companies;
+ company.login.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())):companies;
 
  return (
     <div>
@@ -48,7 +48,9 @@ const App =() => {
           <p>{login}</p>
           <img src={events_url} alt={login}/>
           <p>{url}</p>
-          <button><a href="../featurescompany"></a>details</button>
+          <Link to={'/SingleCompany/${company.id}'}>
+            <button>For Details</button>
+          </Link>
          </div>
         )
        })}

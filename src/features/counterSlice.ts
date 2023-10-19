@@ -32,9 +32,9 @@ const initialState:CompainesState ={
   isLoading:false,
   error: '',
   searchTerm:'',
-  storingCmopany: 0,
-  // singleCompany:company ,
-}
+  singleCompany:null
+
+   }
 
  const companiesSlice = createSlice({
   name:"companies",
